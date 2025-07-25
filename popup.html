@@ -3,31 +3,105 @@
 <head>
   <title>Grok Sidekick</title>
   <style>
-    body { font-family: Arial, sans-serif; width: 300px; padding: 10px; }
-    input, select, textarea, button { width: 100%; margin: 5px 0; }
-    #response { white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; max-height: 200px; overflow-y: auto; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e3e8ee 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(60,72,88,0.10), 0 1.5px 4px rgba(60,72,88,0.08);
+      padding: 20px 18px 16px 18px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      letter-spacing: 0.5px;
+      color: #2d3748;
+      text-align: center;
+    }
+    label {
+      font-size: 0.98em;
+      color: #4a5568;
+      margin-bottom: 2px;
+      margin-top: 6px;
+    }
+    input, select, textarea {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 7px 9px;
+      font-size: 1em;
+      background: #f7fafc;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid #3182ce;
+      outline: none;
+      background: #fff;
+    }
+    button {
+      background: linear-gradient(90deg, #3182ce 0%, #4fd1c5 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 0;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 2px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 2px rgba(49,130,206,0.08);
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2563eb 0%, #38b2ac 100%);
+      box-shadow: 0 2px 6px rgba(49,130,206,0.13);
+    }
+    #response {
+      white-space: pre-wrap;
+      border: 1px solid #cbd5e1;
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 8px;
+      font-size: 0.98em;
+      color: #2d3748;
+    }
   </style>
 </head>
 <body>
-  <h3>Grok Sidekick</h3>
-  <label for="apiKey">API Key:</label>
-  <input type="text" id="apiKey" placeholder="Enter your xAI API key">
-  <button id="saveKey">Save Key</button>
+  <div class="container">
+    <h3>Grok Sidekick</h3>
+    <label for="apiKey">API Key:</label>
+    <input type="text" id="apiKey" placeholder="Enter your xAI API key">
+    <button id="saveKey">Save Key</button>
 
-  <label for="model">Model:</label>
-  <select id="model">
-    <option value="grok-4">grok-4 (Advanced)</option>
-    <option value="grok-3">grok-3 (General)</option>
-    <option value="grok-3-mini">grok-3-mini (Lightweight)</option>
-  </select>
+    <label for="model">Model:</label>
+    <select id="model">
+      <option value="grok-4">grok-4 (Advanced)</option>
+      <option value="grok-3">grok-3 (General)</option>
+      <option value="grok-3-mini">grok-3-mini (Lightweight)</option>
+    </select>
 
-  <label for="query">Query:</label>
-  <textarea id="query" rows="3" placeholder="Enter your query or fetch selected text..."></textarea>
-  <button id="fetchSelection">Fetch Selected Text</button>
-  <button id="submit">Ask Grok</button>
+    <label for="query">Query:</label>
+    <textarea id="query" rows="3" placeholder="Enter your query or fetch selected text..."></textarea>
+    <button id="fetchSelection">Fetch Selected Text</button>
+    <button id="submit">Ask Grok</button>
 
-  <div id="response"></div>
-
+    <div id="response"></div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html> 
