@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grok Sidekick</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 300px; padding: 10px; }
+    input, select, textarea, button { width: 100%; margin: 5px 0; }
+    #response { white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; max-height: 200px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h3>Grok Sidekick</h3>
+  <label for="apiKey">API Key:</label>
+  <input type="text" id="apiKey" placeholder="Enter your xAI API key">
+  <button id="saveKey">Save Key</button>
+
+  <label for="model">Model:</label>
+  <select id="model">
+    <option value="grok-4">grok-4 (Advanced)</option>
+    <option value="grok-3">grok-3 (General)</option>
+    <option value="grok-3-mini">grok-3-mini (Lightweight)</option>
+  </select>
+
+  <label for="query">Query:</label>
+  <textarea id="query" rows="3" placeholder="Enter your query or fetch selected text..."></textarea>
+  <button id="fetchSelection">Fetch Selected Text</button>
+  <button id="submit">Ask Grok</button>
+
+  <div id="response"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 
