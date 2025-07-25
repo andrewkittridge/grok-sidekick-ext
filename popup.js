@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fetchBtn = document.getElementById('fetchSelection');
   const submitBtn = document.getElementById('submit');
   const responseDiv = document.getElementById('response');
+  const fetchPageBtn = document.getElementById('fetchPage');
 
   // Load saved API key and model
   chrome.storage.sync.get(['apiKey', 'model'], (data) => {
@@ -46,6 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('Error fetching selection:', error);
       alert('Failed to fetch selected text. Ensure permissions are granted.');
+    }
+  });
+
+  // Fetch full page content from active tab
+  fetchPageBtn.addEventListener('click', async () => {
+    try {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      chrome.tabs.sendMessage(tab.id, { action: 'getPageContent' }, (response) => {
+        if (response && response.content) {
+          // Limit to 4000 chars for API safety
+          queryTextarea.value = response.content.slice(0, 4000);
+        } else {
+          alert('Could not read page content.');
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching page content:', error);
+      alert('Failed to fetch page content.');
     }
   });
 
