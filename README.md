@@ -52,4 +52,5 @@ A modern, open-source browser extension for Chrome (and compatible with Firefox 
 ---
 
 ## License
-MIT 
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
