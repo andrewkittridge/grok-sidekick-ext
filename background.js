@@ -7,7 +7,7 @@ chrome.commands.onCommand.addListener(async (command) => {
     }, (results) => {
       const selectedText = results && results[0] && results[0].result ? results[0].result.trim() : "";
       if (selectedText) {
-        chrome.storage.sync.set({ grokHotkeySelection: selectedText });
+        chrome.storage.sync.set({ grokHotkeySelection: selectedText, grokHotkeyAutoAsk: true });
         chrome.action.openPopup();
       }
     });

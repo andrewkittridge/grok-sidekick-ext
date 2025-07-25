@@ -11,11 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(['apiKey', 'model'], (data) => {
     if (data.apiKey) apiKeyInput.value = data.apiKey;
     if (data.model) modelSelect.value = data.model;
-    // Check for hotkey selection
-    chrome.storage.sync.get(['grokHotkeySelection'], (hotkeyData) => {
+    // Check for hotkey selection and auto-ask
+    chrome.storage.sync.get(['grokHotkeySelection', 'grokHotkeyAutoAsk'], (hotkeyData) => {
       if (hotkeyData.grokHotkeySelection) {
         queryTextarea.value = hotkeyData.grokHotkeySelection;
         chrome.storage.sync.remove('grokHotkeySelection');
+        if (hotkeyData.grokHotkeyAutoAsk) {
+          chrome.storage.sync.remove('grokHotkeyAutoAsk');
+          setTimeout(() => submitBtn.click(), 100);
+        }
       }
     });
   });
