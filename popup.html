@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Grok Sidekick</title>
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e3e8ee 100%);
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: #181818;
       min-height: 100vh;
       margin: 0;
       padding: 0;
@@ -14,75 +15,121 @@
       justify-content: center;
     }
     .container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(60,72,88,0.10), 0 1.5px 4px rgba(60,72,88,0.08);
-      padding: 20px 18px 16px 18px;
-      width: 320px;
+      background: #23272f;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      padding: 18px 14px 14px 14px;
+      width: 340px;
+      min-height: 420px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      border: 1px solid #23272f;
     }
     h3 {
       margin-top: 0;
       margin-bottom: 10px;
-      font-size: 1.3em;
+      font-size: 1.25em;
       letter-spacing: 0.5px;
-      color: #2d3748;
+      color: #fff;
       text-align: center;
+      font-weight: 700;
+    }
+    .tip {
+      margin-bottom: 8px;
+      font-size: 0.95em;
+      color: #bfc9db;
+      text-align: center;
+      background: #181818;
+      border-radius: 7px;
+      border: 1px solid #23272f;
+      padding: 7px 6px 6px 6px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .tip span {
+      background: #23272f;
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin: 2px 0;
+      display: inline-block;
+      border: 1px solid #2e2e2e;
+      color: #fff;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
     }
     label {
       font-size: 0.98em;
-      color: #4a5568;
-      margin-bottom: 2px;
-      margin-top: 6px;
+      color: #bfc9db;
+      margin-bottom: 1px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .divider {
+      border-bottom: 1px solid #2e2e2e;
+      margin: 7px 0 5px 0;
     }
     input, select, textarea {
-      border: 1px solid #cbd5e1;
+      border: 1.2px solid #2e2e2e;
       border-radius: 6px;
       padding: 7px 9px;
       font-size: 1em;
-      background: #f7fafc;
-      transition: border 0.2s;
+      background: #181818;
+      color: #f3f6fa;
+      transition: border 0.2s, background 0.2s;
+      margin-bottom: 2px;
     }
     input:focus, select:focus, textarea:focus {
-      border: 1.5px solid #3182ce;
+      border: 1.2px solid #fff;
       outline: none;
-      background: #fff;
+      background: #23272f;
     }
     button {
-      background: linear-gradient(90deg, #3182ce 0%, #4fd1c5 100%);
-      color: #fff;
+      background: #fff;
+      color: #181818;
       border: none;
       border-radius: 6px;
-      padding: 8px 0;
+      padding: 9px 0;
       font-size: 1em;
-      font-weight: 500;
+      font-weight: 700;
       cursor: pointer;
       margin-top: 2px;
-      transition: background 0.2s, box-shadow 0.2s;
-      box-shadow: 0 1px 2px rgba(49,130,206,0.08);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.12s, color 0.18s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      letter-spacing: 0.01em;
     }
     button:hover {
-      background: linear-gradient(90deg, #2563eb 0%, #38b2ac 100%);
-      box-shadow: 0 2px 6px rgba(49,130,206,0.13);
+      background: #e2e8f0;
+      color: #23272f;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+      transform: translateY(-1px) scale(1.03);
     }
     #response {
       white-space: pre-wrap;
-      border: 1px solid #cbd5e1;
-      background: #f7fafc;
-      border-radius: 8px;
-      padding: 10px;
-      max-height: 200px;
+      border: 1.2px solid #2e2e2e;
+      background: #181818;
+      border-radius: 7px;
+      padding: 13px;
+      max-height: 220px;
       overflow-y: auto;
-      margin-top: 8px;
-      font-size: 0.98em;
-      color: #2d3748;
+      margin-top: 7px;
+      font-size: 1.05em;
+      color: #f3f6fa;
+      font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
+    }
+    ::placeholder {
+      color: #7b849a;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="tip">
+      <strong>Tip:</strong> Highlight text on any page, then press <br>
+      <span><b>Ctrl+Shift+X</b> (Windows) or <b>&#8984;+Shift+X</b> (Mac)</span><br>
+      to quickly send it to Grok Sidekick.
+    </div>
     <h3>Grok Sidekick</h3>
     <label for="apiKey">API Key:</label>
     <input type="text" id="apiKey" placeholder="Enter your xAI API key">
@@ -98,7 +145,6 @@
     <label for="query">Query:</label>
     <textarea id="query" rows="3" placeholder="Enter your query or fetch selected text..."></textarea>
     <button id="fetchSelection">Fetch Selected Text</button>
-    <button id="fetchPage">Fetch Page Content</button>
     <button id="submit">Ask Grok</button>
 
     <div id="response"></div>

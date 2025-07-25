@@ -17,13 +17,15 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "move-selection-to-popup": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      },
+      "description": "Move selected text to Grok Sidekick popup"
     }
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ]
+  }
 } 
